@@ -3,9 +3,12 @@
 ## How to install
 
 0. _Use the virtualenv, Luke!_ (c) 
-1. `pip install -r requitements.txt`
+1. `pip install -r requirements.txt`
 
 
+# Examples
+
+See `examples/basics.py` for some working examples.
 
 ## Smart-M3 operations
 
@@ -25,7 +28,7 @@ Literal(10))
 Triple(
 URI("http://www.ducatienergia.com/SIIP2P.owl#SensorData_829889475"), 
 URI("http://www.ducatienergia.com/SIIP2P.owl#HasSensorDataValue"), 
-None) # only for query/subscription !!!
+None) # only for query/subscription and remove operations !!!
 ```
 
 ### Join
@@ -40,13 +43,17 @@ None) # only for query/subscription !!!
 ### Insert
 
 ```
-kp.load_rdf_insert(Triple | List[Triple])
+kp.load_rdf_insert(Triple(...))
+OR
+kp.load_rdf_insert([Triple(...), Triple(...), ..., Triple(...)])
 ```
 
 ### Remove
 
 ```
-kp.load_rdf_remove(Triple | List[Triple])
+kp.load_rdf_remove(Triple(...))
+OR
+kp.load_rdf_remove([Triple(...), Triple(...), ..., Triple(...)])
 
 ### Also it is possible to use NONE (wildcard) for ingnoring some on the triplet parts
 ### Triple(URI('test'), None, None) will remove all triplets, where subject == URI('test')
@@ -56,11 +63,19 @@ kp.load_rdf_remove(Triple | List[Triple])
 
 ```
 ### rdf-triples
-kp.load_query_rdf(Triple(...)) # may contain wildcards !
+
+## Query triples may contain wildcards !
+
+kp.load_query_rdf(Triple(...))
+OR
+kp.load_query_rdf([Triple(...), Triple(...), ..., Triple(...)]) # answer will include union of all results
+
+## Query result retrieveng
 for result in kp.result_rdf_query:
     print(result)
     
-### sparql
+    
+### sparql example
 kp.load_query_sparql('....')
     for res in kp_test.result_sparql_query:
 	    for result in res:
