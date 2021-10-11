@@ -1,4 +1,4 @@
-# Smart-m3 homework
+# Smart-m3 RDF triplets test & Intellectual app
 
 ## Basic task
 
